@@ -29,7 +29,7 @@ pipeline
   post {
    success {
     dir("target/"){
-     stash name: "mvn-build", includes: "*.war"
+     stash name: "maven-build", includes: "*.war"
     }
    }
   }
