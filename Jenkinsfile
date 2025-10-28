@@ -28,9 +28,21 @@ pipeline
   }
   post {
    success {
-    dir("webapp/target/"){
-     stash name: "maven-build", includes: "*.war"
+    dir('webapp/target/'){
+     stash name: 'maven-build', includes: '*.war'
     }
    }
+  }
+  stage('deploy'){
+    steps {
+      dir('var/www/html'){
+        unstash 'maven-build'
+      }
+      sh 
+      """
+      cd /var/www/html
+      jar -xvf webapp.war
+      """
+    }
   }
 }
