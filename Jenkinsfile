@@ -26,11 +26,11 @@ pipeline
     }
    }
    post {
-     success {
-      dir("target/"){
+   success {
+    dir("target/"){
        stash name: "mvn-build", includes: "*.war"
-      }
-     }
     }
+   }
+   }
   }
 }
