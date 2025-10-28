@@ -25,10 +25,10 @@ pipeline
      }
     }
    }
-    post {
+   post {
      success {
-      dir('target/'){
-       stash name: 'mvn-build', includes: '*.war'
+      dir("target/"){
+       stash name: "mvn-build", includes: "*.war"
       }
      }
     }
