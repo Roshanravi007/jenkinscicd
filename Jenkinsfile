@@ -25,7 +25,6 @@ pipeline
      }
     }
    }
-  }
   post {
    success {
     dir('webapp/target/'){
@@ -33,7 +32,7 @@ pipeline
     }
    }
   }
-  stage('deploy'){
+   stage('deploy'){
     steps {
       dir('var/www/html'){
         unstash 'maven-build'
@@ -44,5 +43,6 @@ pipeline
       jar -xvf webapp.war
       """
     }
+   }
   }
 }
