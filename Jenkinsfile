@@ -3,6 +3,9 @@ pipeline
   agent {
    label 'server1'
   }
+  parameters {
+  choice choices: ['dev', 'prod'], name: 'select_environment'
+  }
   stages {
    stage('build') {
     steps {
@@ -34,6 +37,13 @@ pipeline
    }
  
    stage('deploy'){
+    when{
+      expression {params.select_environment == 'dev'}
+      beforeAgent true
+    }
+    agent{
+      label 'server1'
+    }
     steps {
       dir('/var/www/html'){
         unstash 'maven-build'
